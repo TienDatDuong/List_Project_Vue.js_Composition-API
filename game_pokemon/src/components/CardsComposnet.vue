@@ -68,7 +68,7 @@ const changeCard = (idx, pokemon) => {
         }
       }
       newArray.value = []
-    },500)
+    },350)
   }
 }
 
