@@ -1,12 +1,35 @@
 <template>
   <div class="container">
-    <header class="title">Game Pokemon</header>
-    <ControllerComponents class="space "/>
+    <header-components @getCount="getCount" :isPlaying="isPlaying"/>
+    <ControllerComponents v-if="!isPlaying" @playing="playing"/>
+    <CardsComponent v-if="isPlaying" :pokemons="pokemons"/>
   </div>
 </template>
 
 <script setup>
 import ControllerComponents from './components/ControllerComponent.vue'
+import HeaderComponents from './components/HeaderComponent'
+import CardsComponent from './components/CardsComposnet'
+import {ref} from "vue";
+import {ElMessage} from "element-plus";
+
+const isPlaying = ref(false)
+const pokemons = ref(0)
+
+const getCount = (num) =>{
+  pokemons.value = num
+}
+
+const playing = () => {
+  if(pokemons.value > 0){
+     isPlaying.value = true
+  }else {
+    ElMessage({
+      message: 'Please select the number of pokemon',
+      type: "success"
+    });
+  }
+}
 
 
 </script>
@@ -31,16 +54,6 @@ import ControllerComponents from './components/ControllerComponent.vue'
   align-items: center;
 }
 
-.title {
-  background-image: linear-gradient(to right, #dcfbf3,#1c5880,#e76c03, brown);
-  color: white;
-  height: 10%;
-  text-align: center;
-  padding: 10px;
-  font-size: 24px;
-  font-family: cursive;
-  width: 100%;
-}
 .space{
   margin-top: 3%;
 }
