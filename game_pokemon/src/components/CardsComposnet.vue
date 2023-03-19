@@ -54,15 +54,10 @@ const changeCard = (idx, pokemon) => {
   const index = newArray.value.findIndex(i => {
     i.pokemon === newArray[idx]
   })
-  console.log(index)
   if (index < 0) {
     newArray.value.push({pokemon,idx})
-    console.log('newArray.value.length', newArray.value.length)
   }
   if (newArray.value.length % 2 == 0) {
-    console.log('newArray.value[0]',newArray.value[0]?.pokemon)
-    console.log('newArray.value[1]',newArray.value[1]?.pokemon)
-    console.log('newArray.value', newArray.value)
     setTimeout(()=>{
       for (let i = 0; i < newArray.value.length; i += 2) {
         const card1 = newArray.value[i];
@@ -72,21 +67,8 @@ const changeCard = (idx, pokemon) => {
           hanld.value[newArray.value[i + 1].idx] = !hanld.value[newArray.value[i + 1].idx];
         }
       }
-
-      // for(let i=0; i< newArray.value.length; i++){
-      //   if(newArray.value.filter(item => item[i +1]?.pokemon !== newArray.value[i]?.pokemon)){
-      //     // pokemonDiff.value.push(newArray.value.filter(item => item.pokemon !== newArray.value[i].pokemon))
-      //     hanld.value[newArray.value[i]?.idx] = !hanld.value[newArray.value[i]?.idx]
-      //     hanld.value[newArray.value[i + 1]?.idx] = !hanld.value[newArray.value[i + 1]?.idx]
-      //     console.log('23', hanld.value[newArray.value[i + 1]?.idx])
-      //   }
-      // }
-      // if (newArray.value[0].pokemon !== newArray.value[1].pokemon) {
-      //   hanld.value[newArray.value[0].idx] = !hanld.value[newArray.value[0].idx]
-      //   hanld.value[newArray.value[1].idx] = !hanld.value[newArray.value[1].idx]
-      // }
-      // newArray.value = []
-    },1000)
+      newArray.value = []
+    },500)
   }
 }
 
